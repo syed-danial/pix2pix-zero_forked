@@ -17,12 +17,12 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: conda-incubator/setup-miniconda@v2
         with:
-          python-version: 3.x
+          environment-file: environment.yml
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+      - name: Activate conda environment
+        run: conda activate <your_environment_name>
 
       - name: Run tests
-        run: python your_code.py --inversion  --prompt "This is  a prompt" --task_name cat2dog --results_folder output/test_cat --num_ddim_steps 50 --model_path CompVis/stable-diffusion-v1-4 --xa_guidance 0.1 --negative_guidance_scale 5.0 --use_float_16
+        run: python your_code.py --inversion path/to/inversion --prompt "your prompt" --task_name cat2dog --results_folder output/test_cat --num_ddim_steps 50 --model_path CompVis/stable-diffusion-v1-4 --xa_guidance 0.1 --negative_guidance_scale 5.0 --use_float_16
